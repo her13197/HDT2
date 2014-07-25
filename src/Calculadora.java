@@ -1,51 +1,50 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-/*
-Autor: Erick Hernandez    Carné: 13197
-Seccion: 30
-
-Nombre de archivo: main.java 
-Descripcion: Clase principal del programa; clase que se compila para iniciar.
-*/
-public class main {
+public class Calculadora {
     public static int cont=0;
     static File archivo = new File("C:\\HDT2\\datos.txt"); //Almacena el archivo en donde se guardaran los datos
     java.io.File directorio = new File("C:\\HDT2");
     public static String data=new String();
-    static Stack pila = new StackArrayList();
-    static double resultado;
+    static Stack pila = new StackVector();
+    static int result=0;
+    static int dat1=0;
+    static int dat2=0;
     
 public static void main(String[] args) {
     
     data=leerDatos();
-    System.out.println(data);
     int largo = data.length();
     for(int i=0;i<largo;i++){
-        if((int)data.charAt(i)<10 && (int)data.charAt(i)>=0 ){
-            pila.push((int)data.charAt(i));
-            System.out.println("dato ingresado");
-        }
-        if(Character.toString(data.charAt(i)).equals("*")){
-            resultado=(int)pila.pop()*(int)pila.pop();
-            pila.push(resultado);
-        }
-        if(Character.toString(data.charAt(i)).equals("+")){
-            resultado=(int)pila.pop()+(int)pila.pop();
-            pila.push(resultado);
-        }
-        if(Character.toString(data.charAt(i)).equals("-")){
-            resultado=(int)pila.pop()-(int)pila.pop();
-            pila.push(resultado);
-        }
-        if(Character.toString(data.charAt(i)).equals("*/")){
-            resultado=(int)pila.pop()/(int)pila.pop();
-            pila.push(resultado);
+        
+        if(Character.toString(data.charAt(i)).equals("*") && !pila.empty()){
+            dat1=(int)pila.pop();
+            dat2=(int)pila.pop();
+            result=dat2*dat1;
+            pila.push(result);
+        }else if(Character.toString(data.charAt(i)).equals("+") && !pila.empty()){
+            dat1=(int)pila.pop();
+            dat2=(int)pila.pop();
+            result=dat2+dat1;
+            pila.push(result);
+        }else if(Character.toString(data.charAt(i)).equals("-") && !pila.empty()){
+            dat1=(int)pila.pop();
+            dat2=(int)pila.pop();
+            result=dat2-dat1;
+            pila.push(result);
+        }else if(Character.toString(data.charAt(i)).equals("/") && !pila.empty()){
+            dat1=(int)pila.pop();
+            dat2=(int)pila.pop();
+            result=dat2/dat1;
+            pila.push(result);
+        }else if(!Character.toString(data.charAt(i)).equals(" ")){
+            int ingresar=(int)data.charAt(i)-48; //gracias JUANA love ya´
+            pila.push(ingresar);
+            
         }
     }
-    
+    System.out.println("el resultado es: "+pila.pop());
 }
     public static String leerDatos(){
             FileReader fr = null;
