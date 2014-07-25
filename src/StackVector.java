@@ -1,3 +1,10 @@
+//Clase:StackVector.java
+//Funciona como una clase que imita a un pila, se usa un vector
+//Hecho por:            Ma. Isabel Fernandez      Carnet: 13024 
+//			Erick Hernandez 	  Carnet: 13197
+//			Andres Lainfiesta	  Carnet: 13072
+//Fecha: 25-07-2014
+//***************************************************************
 import java.util.Vector;
 
 public class StackVector<E>
